@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>Gestion des Contacts</h2>
+  <button class="btn btn-success mb-3" (click)="ajouterContact()">+ Ajouter un Contact</button>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>
+          <input *ngIf="contact.editing" [(ngModel)]="contact.nom" class="form-control">
+          <span *ngIf="!contact.editing">{{ contact.nom }}</span>
+        </td>
+        <td>
+          <input *ngIf="contact.editing" [(ngModel)]="contact.prenom" class="form-control">
+          <span *ngIf="!contact.editing">{{ contact.prenom }}</span>
+        </td>
+        <td>
+          <input *ngIf="contact.editing" [(ngModel)]="contact.email" class="form-control">
+          <span *ngIf="!contact.editing">{{ contact.email }}</span>
+        </td>
+        <td>
+          <input *ngIf="contact.editing" [(ngModel)]="contact.telephone" class="form-control">
+          <span *ngIf="!contact.editing">{{ contact.telephone }}</span>
+        </td>
+        <td>
+          <button *ngIf="contact.editing" class="btn btn-success btn-sm" (click)="enregistrerContact(contact)">
+            <i class="bi bi-check-circle"></i> Enregistrer
+          </button>
+          <button *ngIf="!contact.editing" class="btn btn-primary btn-sm" (click)="modifierContact(contact)">
+            <i class="bi bi-pencil"></i> Modifier
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="supprimerContact(contact)">
+            <i class="bi bi-trash"></i> Supprimer
+          </button>
+          <button class="btn btn-info btn-sm" (click)="consulterContact(contact)">
+            <i class="bi bi-eye"></i> Consulter
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
